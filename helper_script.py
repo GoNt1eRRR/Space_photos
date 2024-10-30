@@ -11,9 +11,9 @@ def get_extension(url):
     return file_extension_path[-1]
 
 
-def save_files(folder_name, photo_urls, names_photo):
+def save_files(folder_name, photo_urls, names_photo, params=None):
     for number_url, photo_url in enumerate(photo_urls):
-        response = requests.get(photo_url)
+        response = requests.get(photo_url, params=params)
         response.raise_for_status()
         with open(f'{folder_name}/{names_photo}{number_url}{get_extension(photo_url)}', 'wb') as file:
             file.write(response.content)

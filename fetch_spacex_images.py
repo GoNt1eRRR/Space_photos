@@ -4,15 +4,15 @@ import requests
 from helper_script import save_files
 
 
-def fetch_spacex_last_launch(photos_id):
+def get_launch_photo_urls(photos_id):
     photo_url = f"https://api.spacexdata.com/v5/launches/{photos_id}"
 
     response = requests.get(photo_url)
     response.raise_for_status()
-    spacex_data = response.json()
+    launch_data = response.json()
 
-    photos_urls = spacex_data['links']['flickr']['original']
-    return photos_urls
+    photo_urls = launch_data['links']['flickr']['original']
+    return photo_urls
 
 
 def main():
@@ -26,7 +26,7 @@ def main():
     photos_id = args.id
 
     os.makedirs(folder_name, exist_ok=True)
-    photo_urls = fetch_spacex_last_launch(photos_id)
+    photo_urls = get_launch_photo_urls(photos_id)
     save_files(folder_name, photo_urls, name_photo)
 
 

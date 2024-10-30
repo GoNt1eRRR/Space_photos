@@ -5,7 +5,6 @@ from helper_script import save_files
 
 
 def get_nasa_photos_urls(api_key):
-    photo_urls = []
     url = f'https://api.nasa.gov/planetary/apod'
     photo_quantity = 40
     payload = {
@@ -15,10 +14,9 @@ def get_nasa_photos_urls(api_key):
 
     response = requests.get(url, params=payload)
     response.raise_for_status()
-    nasa_data = response.json()
+    photo_data = response.json()
 
-    for photo_url in nasa_data:
-        photo_urls.append(photo_url['url'])
+    photo_urls = [photo['url'] for photo in photo_data]
     return photo_urls
 
 
