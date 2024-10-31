@@ -14,9 +14,9 @@ def get_nasa_photos_urls(api_key):
 
     response = requests.get(url, params=payload)
     response.raise_for_status()
-    photo_data = response.json()
+    apod_images = response.json()
 
-    photo_urls = [photo['url'] for photo in photo_data]
+    photo_urls = [photo['url'] for photo in apod_images]
     return photo_urls
 
 

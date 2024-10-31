@@ -9,9 +9,8 @@ def get_launch_photo_urls(photos_id):
 
     response = requests.get(photo_url)
     response.raise_for_status()
-    launch_data = response.json()
 
-    photo_urls = launch_data['links']['flickr']['original']
+    photo_urls = response.json()['links']['flickr']['original']
     return photo_urls
 
 

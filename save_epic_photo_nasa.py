@@ -5,7 +5,7 @@ from datetime import datetime
 from helper_script import save_files
 
 
-def get_epic_photos_info(api_key):
+def get_epic_photos_urls(api_key):
     url = 'https://api.nasa.gov/EPIC/api/natural'
     foto_quantity = 7
     payload = {
@@ -26,7 +26,7 @@ def main():
     photo_prefix = 'nasa_epic_'
 
     os.makedirs(folder_name, exist_ok=True)
-    epic_images = get_epic_photos_info(api_key)
+    epic_images = get_epic_photos_urls(api_key)
     photo_urls = []
 
     for epic_image in epic_images:
